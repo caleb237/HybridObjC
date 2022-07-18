@@ -1,0 +1,68 @@
+//
+//  Vwfs_ods.pch
+//  ods
+//
+//  Created by Mac on 2018. 5. 9..
+//  Copyright © 2018년 aquila. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <UserNotifications/UserNotifications.h>
+#import <WebKit/WebKit.h>
+#import "Firebase.h"
+
+#import "ServiceManager.h"
+#import "AqUtil.h"
+#import "UIView+CustomConstraint.h"
+#import "AppDelegate.h"
+#import "ServerURLHelper.h"
+#import "BaseVC.h"
+#import "ToastMessageView.h"
+#import "CommonCustomPopup.h"
+
+// 로그 처리
+#ifdef DEBUG
+#else
+    #define NSLog(s, ... )
+#endif
+
+// 디버그 플래그
+#define TEST_MODE 1 // 0 : 운영상태, 1 : 개발상태(서버 선택) // release - 0
+#define USE_WEB_CASH 0 // 0 : 웹뷰 캐시 사용하지 않음, 1 : 웹뷰 캐시 사용 // release - 1
+
+#define aqDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
+#define APP_BUNDLE     [[NSBundle mainBundle] bundleIdentifier]
+#define APP_VERSION    [[[NSBundle mainBundle] infoDictionary] objectForKey: @"CFBundleShortVersionString"]
+
+// 앱스토어 url
+#define APPSTORE_URL @"http://itunes.apple.com/kr/app/id1450471590?mt=8"
+
+// 사진 첨부 path
+#define ATTACH_FILE_PATH [NSString stringWithFormat:@"%@/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], @"attach"]
+
+// 링크 관련
+#define kApnsNoti @"apnsNoti" // apns 노티 보내기
+
+// 스크린 사이즈
+#define SCREENHEIGHT [[UIScreen mainScreen] bounds].size.height
+#define SCREENWIDTH [[UIScreen mainScreen] bounds].size.width
+#define DEVICE_FRAME [[UIScreen mainScreen] bounds]
+#define STATUS_HEIGHT [UIApplication sharedApplication].statusBarFrame.size.height
+
+// 타임아웃 시간
+#define TIME_OUT 30.0f
+
+// 네트워크 에러메세지
+#define kNetworkErrMsg @"네트워크 오류가 발생했습니다."
+
+// 키 정의
+#define kPopListCellTitleKey @"title"
+#define kPopListCellKey @"key"
+#define kAqUdid @"aqUdid"
+
+// 공통 함수
+#define AvoidNil(a) (a == nil ? @"" : a)
+#define GET_MAX(A,B)    ((A) > (B) ? (A) : (B))
+#define GET_MIN(A,B)    ((A) < (B) ? (A) : (B))
+#define UIColorFromHexToRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
