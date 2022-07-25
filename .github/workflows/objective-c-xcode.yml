@@ -8,8 +8,12 @@ on:
 
 jobs:
   build:
-    name: Build and analyse default scheme using xcodebuild command
+  
     runs-on: self-hosted
+    env:
+      XC_VERSION: ${{ '13.2.1' }}
+      XC_PROJECT: ${{ 'hyundaicapital.xcodeproj' }}
+      XC_SCHEME: ${{ 'hyundaicapital' }}
 
     steps:
       - name: Checkout
